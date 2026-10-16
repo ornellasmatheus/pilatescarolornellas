@@ -34,3 +34,16 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ====== Botão flutuante do WhatsApp ======
+const whatsappFloat = document.querySelector('.whatsapp-float');
+
+if (whatsappFloat) {
+  window.addEventListener('scroll', () => {
+    // Aparece depois de 400px de rolagem
+    whatsappFloat.classList.toggle('is-visible', window.scrollY > 400);
+  });
+
+  // Verifica estado inicial (caso a página carregue já rolada)
+  whatsappFloat.classList.toggle('is-visible', window.scrollY > 400);
+}
