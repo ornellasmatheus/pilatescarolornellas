@@ -117,15 +117,34 @@ ul { list-style: none; }
 .logo {
   display: flex;
   align-items: center;
+  gap: 12px; /* Espaço entre a imagem e o texto */
   text-decoration: none;
 }
 
-/* Ajuste da sua imagem de logo */
 .logo__img {
-  height: 48px; /* Altura ideal para manter a legibilidade sem ocupar muito espaço */
-  width: auto;  /* Mantém a proporção da imagem */
+  height: 48px;
+  width: auto;
   display: block;
-  object-fit: contain; /* Garante que a logo não seja cortada */
+  object-fit: contain;
+}
+
+/* Estilo do texto VITA Pilates */
+.logo__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--marrom); 
+  letter-spacing: 0.05em;
+}
+
+/* Ajuste para celular para não espremer o botão Agendar */
+@media (max-width: 480px) {
+  .logo__text {
+    font-size: 1rem;
+  }
+  .logo__img {
+    height: 40px;
+  }
 }
 
 .btn--header { 
