@@ -1,49 +1,104 @@
-// ====== Header com fundo ao rolar ======
-const header = document.getElementById('header');
-const menuBtn = document.getElementById('menuBtn');
-const nav = document.getElementById('nav');
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // ==========================================================
+  // 1. BOTÃO FLUTUANTE DO WHATSAPP
+  // ==========================================================
+  const whatsappFloat = document.querySelector('.whatsapp-float');
+  const whatsappTriggerPoint = 200; // Aparece após rolar 200px
 
-window.addEventListener('scroll', () => {
-  header.classList.toggle('is-scrolled', window.scrollY > 60);
-});
+  if (whatsappFloat) {
+    const checkWhatsAppVisibility = () => {
+      if (window.scrollY > whatsappTriggerPoint) {
+        whatsappFloat.classList.add('is-visible');
+      } else {
+        whatsappFloat.classList.remove('is-visible');
+      }
+    };
 
-// ====== Menu mobile ======
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('is-open');
-  nav.classList.toggle('is-open');
-  document.body.style.overflow = nav.classList.contains('is-open') ? 'hidden' : '';
-});
+    checkWhatsAppVisibility();
+    window.addEventListener('scroll', checkWhatsAppVisibility, { passive: true });
+  }
 
-// Fecha o menu ao clicar em um link
-nav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuBtn.classList.remove('is-open');
-    nav.classList.remove('is-open');
-    document.body.style.overflow = '';
+  // ==========================================================
+  // 2. TRANSIÇÕES SUAVES (SCROLL REVEAL)
+  // ==========================================================
+  const revealElements = document.querySelectorAll(
+    '.hero__badge, .hero__title, .hero__text, .hero__actions, .hero__image, ' +
+    '.eyebrow, .section__title, ' +
+    '.card-info, .card-modalidade, .modalidade__img, .card-depoimento, .cta-box'
+  );
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    });
+
+    revealElements.forEach(el => {
+      el.classList.add('reveal-init');
+      revealObserver.observe(el);
+    });
+
+  } else {
+    revealElements.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // ==========================================================
+  // 3. AUTOPLAY DOS CARROSSEIS DE FOTOS (Modalidades)
+  // ==========================================================
+  const sliders = document.querySelectorAll('.js-slider');
+  
+  sliders.forEach(slider => {
+    let isHovered = false;
+    let autoplayInterval;
+    const delay = 3000; // Tempo em milissegundos (3 segundos)
+
+    // Função que faz a troca da foto
+    const nextSlide = () => {
+      // Se o mouse estiver em cima ou dedo na tela, não avança
+      if (isHovered) return; 
+
+      const scrollWidth = slider.clientWidth;
+      const maxScroll = slider.scrollWidth - scrollWidth;
+      const currentScroll = slider.scrollLeft;
+
+      // Se chegou na última foto (com uma margem de erro de 10px), volta para a primeira
+      if (currentScroll >= maxScroll - 10) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Se não, rola para a próxima foto
+        slider.scrollBy({ left: scrollWidth, behavior: 'smooth' });
+      }
+    };
+
+    // Inicia o autoplay
+    const startAutoplay = () => {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(nextSlide, delay);
+    };
+
+    // Inicia o loop automaticamente
+    startAutoplay();
+
+    // Pausa o autoplay ao passar o mouse (Desktop)
+    slider.addEventListener('mouseenter', () => { isHovered = true; });
+    slider.addEventListener('mouseleave', () => { isHovered = false; });
+
+    // Pausa ao tocar (Mobile) e retoma após 2s que o dedo saiu
+    slider.addEventListener('touchstart', () => { isHovered = true; }, { passive: true });
+    slider.addEventListener('touchend', () => { 
+      setTimeout(() => { isHovered = false; }, 2000); 
+    }, { passive: true });
   });
+
 });
-
-// ====== Animação de entrada nas seções ======
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('is-visible'), i * 90);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ====== Botão flutuante do WhatsApp ======
-const whatsappFloat = document.querySelector('.whatsapp-float');
-
-if (whatsappFloat) {
-  window.addEventListener('scroll', () => {
-    // Aparece depois de 400px de rolagem
-    whatsappFloat.classList.toggle('is-visible', window.scrollY > 400);
-  });
-
-  // Verifica estado inicial (caso a página carregue já rolada)
-  whatsappFloat.classList.toggle('is-visible', window.scrollY > 400);
-}
