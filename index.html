@@ -6,7 +6,7 @@
   <title>VITA Pilates | Estúdio de Pilates para Mulheres em Campo Grande</title>
   <meta name="description" content="Muito mais que Pilates, uma experiência que transforma sua saúde e bem-estar. Estúdio exclusivo para mulheres no Mata do Jacinto, Campo Grande - MS. Agende sua aula avaliativa.">
 
-  <!-- Open Graph (Para compartilhamento em redes sociais) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="VITA Pilates | Estúdio em Campo Grande">
   <meta property="og:description" content="Fortaleça seu corpo, melhore sua postura e encontre bem-estar. Exclusivo para mulheres.">
   <meta property="og:type" content="website">
@@ -16,14 +16,11 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 
-  <!-- ========================================== -->
-  <!-- DADOS ESTRUTURADOS PARA O GOOGLE (SEO)     -->
-  <!-- ========================================== -->
+  <!-- DADOS ESTRUTURADOS PARA O GOOGLE (SEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,7 +57,6 @@
     <div class="container header__inner">
       <a href="#" class="logo">
         <img src="https://i.postimg.cc/rp2NC5DN/logo-pequena.png" alt="VITA Pilates" class="logo__img">
-        <!-- Texto adicionado abaixo -->
         <span class="logo__text">VITA Pilates</span>
       </a>
       <a href="https://wa.me/5567991851883" target="_blank" class="btn btn--header">Agendar</a>
@@ -95,15 +91,25 @@
       </div>
 
       <div class="hero__image">
-        <img src="https://i.postimg.cc/dtJvKcMT/F227D7A6-DFAC-4D04-9F8A-3D07284A20AB.png" alt="Aula de Pilates no aparelho">
+        <div class="hero__slider js-slider">
+          <div class="hero__img-wrap">
+            <img src="https://i.postimg.cc/dtJvKcMT/F227D7A6-DFAC-4D04-9F8A-3D07284A20AB.png" alt="Aula de Pilates no aparelho" fetchpriority="high">
+          </div>
+          <div class="hero__img-wrap">
+            <img src="https://i.postimg.cc/q7N4ZcfR/IMG-20261017-165437-jpg.jpg" alt="Aula de Pilates Solo" loading="lazy">
+          </div>
+          <div class="hero__img-wrap">
+            <img src="https://i.postimg.cc/NGZDjhgY/D2332866-A485-47AF-9A11-547DD391410C.png" alt="Aparelho Reformer" loading="lazy">
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- DIFERENCIAIS -->
     <section class="section bg-areia">
-      <div class="container">
-        <span class="eyebrow">Por que a VITA Pilates</span>
-        <h2 class="section__title">Um cuidado que vai além do movimento</h2>
+      <div class="container text-center">
+        <span class="eyebrow">Por que no VITA Pilates</span>
+        <h2 class="section__title">O cuidado vai além do movimento</h2>
 
         <div class="grid-cards">
           <article class="card-info">
@@ -135,9 +141,10 @@
 
     <!-- MODALIDADES -->
     <section class="section">
-      <div class="container">
+      <div class="container text-center">
         <span class="eyebrow">Nossas aulas</span>
-        <h2 class="section__title">Modalidades para<br>cada fase da sua vida</h2>
+        <!-- Título sem <br> para ficar em uma linha só -->
+        <h2 class="section__title">Modalidades para cada fase da sua vida</h2>
 
         <div class="grid-cards modalidades-grid">
           
@@ -145,7 +152,7 @@
           <article class="card-modalidade">
             <div class="card-modalidade__content">
               <div class="card-modalidade__header">
-                <h3>Pilates Solo e<br>Aparelhos</h3>
+                <h3>Pilates Solo e Aparelhos</h3>
                 <span class="tag">Todos os níveis</span>
               </div>
               <p>Exercícios adaptados à necessidade individual de cada aluna, respeitando seu corpo, seu ritmo e seus objetivos.</p>
@@ -169,7 +176,7 @@
           <article class="card-modalidade">
             <div class="card-modalidade__content">
               <div class="card-modalidade__header">
-                <h3>Pilates para<br>Gestantes</h3>
+                <h3>Pilates para Gestantes</h3>
                 <span class="tag">Pré e pós-parto</span>
               </div>
               <p>Acompanhamento seguro em todas as fases da gestação, fortalecendo o corpo para o parto.</p>
@@ -197,7 +204,7 @@
     <section class="section bg-areia">
       <div class="container text-center">
         <span class="eyebrow">Quem já vive a experiência</span>
-        <h2 class="section__title">Histórias de<br>mulheres reais</h2>
+        <h2 class="section__title">Histórias de mulheres reais</h2>
 
         <div class="grid-cards grid-cards--depoimentos">
           <article class="card-depoimento">
@@ -222,10 +229,9 @@
     <section class="section">
       <div class="container">
         <div class="cta-box">
-          
-          <!-- Coluna da Esquerda (Textos e Infos) -->
           <div class="cta-box__content">
-            <h2>Agende sua<br>aula avaliativa</h2>
+            <h2>Agende sua aula avaliativa
+              <p></p>
             <p>Quer sentir essa transformação em você? Venha fazer parte da comunidade VITA Pilates, comprometida com a saúde e bem-estar. Junte-se a nós!</p>
             
             <a href="https://wa.me/5567991851883" target="_blank" class="btn btn--white">
@@ -251,7 +257,6 @@
             </ul>
           </div>
 
-          <!-- Coluna da Direita (Mapa) -->
           <div class="cta-box__mapa">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d934.7636692948886!2d-54.57651443037085!3d-20.421831042002164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9486e9c4ccfb72f1%3A0x776af88fe8905b8a!2sAv.%20Alberto%20Ara%C3%BAjo%20Arruda%2C%201022%20-%20Sl%201%20-%20Mata%20do%20Jacinto%2C%20Campo%20Grande%20-%20MS%2C%2079033-470!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
@@ -262,7 +267,6 @@
               title="Localização VITA Pilates">
             </iframe>
           </div>
-
         </div>
       </div>
     </section>
@@ -271,7 +275,7 @@
     <footer class="footer">
       <div class="container footer__inner">
         <p>&copy; 2024 VITA Pilates. Todos os direitos reservados.</p>
-        <p>Feito com carinho.</p>
+        <p>Feito com carinho. ❤️</p>
       </div>
     </footer>
   </main>

@@ -100,7 +100,7 @@ ul { list-style: none; }
    HEADER
    ========================================================== */
 .header {
-  padding: 16px 0; /* Um pouco mais compacto para valorizar a logo */
+  padding: 16px 0;
   background: var(--creme);
   border-bottom: 1px solid rgba(0,0,0,0.05);
   position: sticky;
@@ -117,7 +117,7 @@ ul { list-style: none; }
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px; /* Espaço entre a imagem e o texto */
+  gap: 12px;
   text-decoration: none;
 }
 
@@ -128,7 +128,6 @@ ul { list-style: none; }
   object-fit: contain;
 }
 
-/* Estilo do texto VITA Pilates */
 .logo__text {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
@@ -137,14 +136,9 @@ ul { list-style: none; }
   letter-spacing: 0.05em;
 }
 
-/* Ajuste para celular para não espremer o botão Agendar */
 @media (max-width: 480px) {
-  .logo__text {
-    font-size: 1rem;
-  }
-  .logo__img {
-    height: 40px;
-  }
+  .logo__text { font-size: 1rem; }
+  .logo__img { height: 40px; }
 }
 
 .btn--header { 
@@ -153,12 +147,10 @@ ul { list-style: none; }
   padding: 10px 24px; 
   font-size: 0.85rem; 
 }
-.btn--header:hover { 
-  background: var(--marrom-escuro); 
-}
+.btn--header:hover { background: var(--marrom-escuro); }
 
 /* ==========================================================
-   HERO
+   HERO (COM SLIDER)
    ========================================================== */
 .hero {
   padding-top: clamp(40px, 8vw, 80px);
@@ -193,8 +185,37 @@ ul { list-style: none; }
 
 .hero__actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
 
-.hero__image { border-radius: 32px; overflow: hidden; aspect-ratio: 4/3; }
-.hero__image img { width: 100%; height: 100%; }
+.hero__image { 
+  border-radius: 32px; 
+  overflow: hidden; 
+  aspect-ratio: 4/3; 
+  position: relative;
+}
+
+.hero__slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hero__slider::-webkit-scrollbar { display: none; }
+
+.hero__img-wrap {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__img-wrap img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+}
 
 /* ==========================================================
    GRIDS E CARDS GERAIS
@@ -228,9 +249,10 @@ ul { list-style: none; }
 .card-depoimento strong { font-family: var(--font-texto); font-size: 0.9rem; font-weight: 500; color: var(--texto); }
 
 /* ==========================================================
-   MODALIDADES (Cards Simétricos com Foto/Slide)
+   MODALIDADES (Cards lado a lado no desktop)
    ========================================================== */
-/* Força as 2 colunas simétricas no Desktop */
+
+/* Força 2 colunas no desktop */
 @media (min-width: 768px) {
   .modalidades-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -249,7 +271,7 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative; /* Necessário para o gradiente do slider */
+  position: relative;
 }
 
 .card-modalidade:hover {
@@ -257,6 +279,7 @@ ul { list-style: none; }
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
+/* Texto em cima */
 .card-modalidade__content {
   padding: 32px 32px 24px;
   flex: 1; 
@@ -282,7 +305,7 @@ ul { list-style: none; }
   font-size: 0.95rem; 
 }
 
-/* Slide de Fotos (CSS Scroll Snap) */
+/* Foto embaixo */
 .card-modalidade__slider {
   display: flex;
   overflow-x: auto;
@@ -290,8 +313,6 @@ ul { list-style: none; }
   scroll-behavior: smooth;
   aspect-ratio: 4 / 3;
   margin-top: auto;
-  
-  /* Esconde a barra de rolagem */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -319,14 +340,14 @@ ul { list-style: none; }
   transform: scale(1.03);
 }
 
-/* Gradiente indicando que há mais fotos para o lado */
+/* Gradiente no canto da foto */
 .card-modalidade::after {
   content: '';
   position: absolute;
   bottom: 0;
   right: 0;
   width: 40px;
-  height: 33.33%; /* Aproximadamente a altura da foto */
+  height: 33.33%;
   background: linear-gradient(to right, transparent, rgba(255,255,255,0.3));
   pointer-events: none;
   z-index: 2;
@@ -334,7 +355,7 @@ ul { list-style: none; }
 }
 
 /* ==========================================================
-   CTA FINAL (Layout 2 Colunas no Desktop)
+   CTA FINAL
    ========================================================== */
 .cta-box {
   background: var(--marrom); 
@@ -342,7 +363,7 @@ ul { list-style: none; }
   padding: clamp(32px, 6vw, 56px);
   color: #fff; 
   display: grid;
-  grid-template-columns: 1fr; /* Mobile: 1 coluna */
+  grid-template-columns: 1fr;
   gap: 40px;
 }
 
@@ -357,7 +378,8 @@ ul { list-style: none; }
 .cta-box__content p { 
   font-size: 1rem; 
   color: rgba(255,255,255,0.9); 
-  margin-bottom: 32px; 
+  margin-bottom: 32px;
+  font-family: Arial, sans-serif;  
 }
 
 .cta-box__content .btn { 
@@ -387,7 +409,6 @@ ul { list-style: none; }
   margin-top: 2px; 
 }
 
-/* O Mapa (Mobile) */
 .cta-box__mapa {
   width: 100%;
   height: 250px;
@@ -406,6 +427,22 @@ ul { list-style: none; }
 
 .cta-box__mapa:hover iframe {
   filter: none;
+}
+
+.cta-box__info { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+}
+
+.cta-box__info li {
+  display: flex; 
+  align-items: flex-start; 
+  gap: 12px;
+  font-size: 0.95rem; /* Aumentei levemente para o Arial ficar mais legível */
+  color: rgba(255,255,255,0.9); 
+  line-height: 1.5;
+  font-family: Arial, sans-serif; 
 }
 
 /* ==========================================================
@@ -482,7 +519,7 @@ ul { list-style: none; }
 .grid-cards .reveal-init:nth-child(3) { transition-delay: 0.25s; }
 
 /* ==========================================================
-   MEDIA QUERIES (RESPONSIVIDADE)
+   MEDIA QUERIES (RESPONSIVIDADE GERAL)
    ========================================================== */
 
 /* Tablet (768px+) */
@@ -492,16 +529,13 @@ ul { list-style: none; }
   
   .hero__actions { flex-direction: row; }
   
-  /* CTA Box divide em 2 colunas (Texto | Mapa) */
   .cta-box {
     grid-template-columns: 1.2fr 1fr; 
     align-items: stretch;
     gap: 48px;
   }
   
-  .cta-box__content .btn { 
-    width: auto; 
-  }
+  .cta-box__content .btn { width: auto; }
   
   .cta-box__mapa {
     height: 100%;
@@ -516,7 +550,7 @@ ul { list-style: none; }
   padding: 40px 0;
   background: var(--creme);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px; /* Espaço extra caso o botão do WhatsApp passe por cima */
+  margin-bottom: 20px;
 }
 
 .footer__inner {
@@ -535,7 +569,6 @@ ul { list-style: none; }
   margin: 0;
 }
 
-/* No Desktop, coloca os textos lado a lado */
 @media (min-width: 768px) {
   .footer__inner {
     flex-direction: row;
