@@ -6,8 +6,8 @@
   --areia: #EBE5D9;
   --marrom: #7E4F3C;
   --marrom-escuro: #5C3727;
-  --verde-sage: #A4B69A;
-  --verde-sage-escuro: #3A4733;
+  --verde-sage: #3F962E;
+  --branco: #FFFFFF;
   --texto: #2A2A28;
   --texto-suave: #595953;
   --bege-claro: #F0E6D8;
@@ -296,7 +296,7 @@ ul { list-style: none; }
 }
 
 .tag {
-  display: inline-block; background: var(--verde-sage); color: var(--verde-sage-escuro);
+  display: inline-block; background: var(--verde-sage); color: var(--branco);
   font-size: 0.75rem; font-weight: 500; padding: 6px 14px; border-radius: 50px;
 }
 
